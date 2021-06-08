@@ -74,6 +74,16 @@ def L(search_word):
                 return word[1].rstrip('\n').split(',')
 
 
+def OR(list1, list2):
+    answer = []
+    for elem1 in list1:
+        answer.append(elem1)
+    for elem2 in list2:
+        if elem2 not in answer:
+            answer.append(elem2)
+    return answer
+
+
 if __name__ == "__main__":
     solve()
-    print(L("Frodo"))
+    print(OR(L("Grieta"), L("Grupo")))
