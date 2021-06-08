@@ -78,7 +78,7 @@ void InvertedIndex::search(std::string word)
   {
     std::cout<<counter+1<<":\n";
     std::cout<<"   Filename: "<<Dictionary[word][counter].file_name<<std::endl;
-    std::cout<<"   Line Number: "<<Dictionary[word][counter].line<<std::endl;
+    //std::cout<<"   Line Number: "<<Dictionary[word][counter].line<<std::endl;
     std::cout<<"   Index: "<<Dictionary[word][counter].index<<std::endl;
   }
 }

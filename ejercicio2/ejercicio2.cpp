@@ -10,37 +10,8 @@ int main(int argc, char*argv[])
     Data.addfile(argv[i]);
   }
 
-  int choice = 0;
-  do
-  {
-    cout<<"1: See files\n2: Add File\n3: Query Word\n4: Exit\n";
-    cin>>choice;
-    switch(choice)
-    {
-      case 1: Data.show_files(); break;
-      case 2:
-      {
-        cout<<"Enter File Name: ";
-        string name;
-        cin>>name;
-        Data.addfile(name);
-        break;
-      }
+  Data.addfile("datos.txt");
 
-      case 3:
-      {
-        cout<<"Enter Word: ";
-        string word;
-        cin>>word;
-        Data.search(word);
-        break;
-      }
-
-      case 4: break;
-
-      default : continue;
-    }
-  }while(choice!=4);
 
   return 0;
 }
