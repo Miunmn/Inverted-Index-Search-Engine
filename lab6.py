@@ -3,16 +3,19 @@ from nltk.stem.snowball import SnowballStemmer
 # nltk.download("punkt")
 # nltk.download('stopwords')
 
+def addtopathfile(filename):
+    return "files/"+filename
+
 
 def stoplistInitilizer(filename):
-    with open(filename) as filterFile:
+    with open(addtopathfile(filename)) as filterFile:
         stoplist = [line.lower().strip() for line in filterFile]
     stoplist += ['.', '?', '-', ';', ':', ',', '\'', '\"', '!', '¿', '¡', '»', '(', ')', '«']
     return stoplist
 
 
 def readFile(listaRecurrente, name, stoplist):
-    f = open(name, "r", encoding='utf8')
+    f = open(addtopathfile(name), "r", encoding='utf8')
     stemmer = SnowballStemmer('spanish')
     texto = f.read()
     palabras = nltk.word_tokenize(texto.lower())
@@ -55,7 +58,7 @@ def solve():
 
     listaRecurrente.sort(key=lambda tup: tup[0])
 
-    file = open("freqWord.txt", "w", encoding='utf8')
+    file = open(addtopathfile("indexfile.txt"), "w", encoding='utf8')
     for i in range(500):
         if listaRecurrente[i] is None:
             break
@@ -67,7 +70,7 @@ def L(search_word):
     stemmer = SnowballStemmer('spanish')
     cut_word = search_word.lower()
     cut_word = stemmer.stem(cut_word)
-    with open("freqWord.txt", "r", encoding='utf8') as file:
+    with open(addtopathfile("indexfile.txt"), "r", encoding='utf8') as file:
         for line in file:
             word = line.split(':')
             if word[0] == cut_word:
@@ -78,7 +81,7 @@ def AND(lista1, lista2):
     return final_list
 
 def AND_NOT(lista1 , lista2):
-    return set(lista1) - set(lista2)
+    return list(set(lista1) - set(lista2))
 
 def OR(list1, list2):
     answer = []
@@ -92,4 +95,12 @@ def OR(list1, list2):
 
 if __name__ == "__main__":
     solve()
-    print(OR(L("Grieta"), L("Grupo")))
+    print('''AND_NOT( L("viej") , L("volunt") )''')
+    prueba1 = AND_NOT(L("viej"),L("volunt"))
+    print(prueba1)
+    print('''AND_NOT(AND(L("acab"),L("asi")),L("ayud"))''')
+    prueba2 = AND_NOT(AND(L("acab"),L("asi")),L("ayud"))
+    print(prueba2)
+    print('''AND(OR(L("acab"),L("asi")),L("ayud")''')
+    prueba3 = AND(OR(L("acab"),L("asi")),L("ayud"))
+    print(prueba3)
