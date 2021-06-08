@@ -80,6 +80,16 @@ def AND(lista1, lista2):
 def AND_NOT(lista1 , lista2):
     return set(lista1) - set(lista2)
 
+def OR(list1, list2):
+    answer = []
+    for elem1 in list1:
+        answer.append(elem1)
+    for elem2 in list2:
+        if elem2 not in answer:
+            answer.append(elem2)
+    return answer
+
+
 if __name__ == "__main__":
     solve()
-    print(L("Frodo"))
+    print(OR(L("Grieta"), L("Grupo")))
