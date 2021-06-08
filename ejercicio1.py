@@ -73,6 +73,12 @@ def L(search_word):
             if word[0] == cut_word:
                 return word[1].rstrip('\n').split(',')
 
+def AND(lista1, lista2):
+    final_list = list(set(lista1) | set(lista2))
+    return final_list
+
+def AND_NOT(lista1 , lista2):
+    return set(lista1) - set(lista2)
 
 if __name__ == "__main__":
     solve()
